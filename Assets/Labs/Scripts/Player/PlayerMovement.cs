@@ -1,32 +1,34 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Gameplay
 {
     public class PlayerMovement
     {
         private PlayerInput _input;
+        private NavMeshAgent _navMeshAgent;
         private Transform _transform;
-        private float _movementSpeed;
-        private float _rotationSpeed;
 
-        public PlayerMovement(PlayerInput input, Transform transform, 
-                              float movementSpeed, float rotationSpeed)
+        public PlayerMovement(PlayerInput input, NavMeshAgent navMeshAgent, Transform transform)
         {
             _input = input;
+            _navMeshAgent = navMeshAgent;
             _transform = transform;
-            _movementSpeed = movementSpeed;
-            _rotationSpeed = rotationSpeed;
         }
 
-        public void Move(float deltaTime)
+        public void Move()
         {
             var input = _input.GetMovementInput();
-            var direction = new Vector3(input.x, 0f, input.y).normalized;
-            var velocity = direction * _movementSpeed;
-            var rotation = Quaternion.LookRotation(direction);
+            var direction = new Vector3(input.x, 0f, input.y);
+            var position = _transform.position + direction;
 
-            _transform.position += velocity * deltaTime;
-            _transform.rotation = Quaternion.Lerp(_transform.rotation, rotation, _rotationSpeed * deltaTime);
+            _navMeshAgent.isStopped = false;
+            _navMeshAgent.SetDestination(position);
+        }
+
+        public void StopMovement()
+        {
+            _navMeshAgent.isStopped = true;
         }
     }
 }

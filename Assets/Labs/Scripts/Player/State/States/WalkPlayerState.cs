@@ -16,10 +16,15 @@ namespace Gameplay
         public override void Update()
         {
             if (_player.Input.IsMovementActive())
-                _player.Movement.Move(Time.deltaTime);
+                _player.Movement.Move();
 
             else
                 _handler.SetIdleState();
+        }
+
+        public override void Exit()
+        {
+            _player.Movement.StopMovement();
         }
     }
 }

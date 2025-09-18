@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 namespace Gameplay
 {
@@ -8,8 +9,6 @@ namespace Gameplay
 
         [Space]
 
-        [SerializeField] private float _movementSpeed;
-        [SerializeField] private float _rotationSpeed;
         [SerializeField] private float _interactionRange;
 
         [Space]
@@ -31,9 +30,10 @@ namespace Gameplay
         private void Awake()
         {
             var itemPickingUp = GetComponent<ItemPickingUp>();
+            var navMeshAgent = GetComponent<NavMeshAgent>();
             _input = new KeyboardPlayerInput();
 
-            _movement = new PlayerMovement(_input, transform, _movementSpeed, _rotationSpeed);
+            _movement = new PlayerMovement(_input, navMeshAgent, transform);
             _interaction = new PlayerInteraction(itemPickingUp, transform, _interactionRange);
             _animation = new PlayerAnimation(_animator);
 
