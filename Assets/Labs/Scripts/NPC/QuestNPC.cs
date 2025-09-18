@@ -1,13 +1,11 @@
-using System;
+using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
-using UnityEngine.Rendering.Universal;
 
 namespace Gameplay
 {
-    public class QuestNPC : MonoBehaviour
+    public class QuestNPC : NPC
     {
         [SerializeField] private ItemType[] _requiredItems;
         [SerializeField] private TMP_Text _messageView;
@@ -19,10 +17,15 @@ namespace Gameplay
         [SerializeField] private string _questMessage;
         [SerializeField] private string _refusalMessage;
 
+        [Space]
+
+        [SerializeField] private Transform _cameraPont;
+
         private bool _isQuestStarted;
         private bool _isQuestFinished;
         private int _currentRequiredItemIdx;
 
+        public Transform CameraPoint => _cameraPont;
         private ItemType CurrentQuestItemType => _requiredItems[_currentRequiredItemIdx];
 
         private void Start()
@@ -30,8 +33,12 @@ namespace Gameplay
             _messageView.gameObject.SetActive(false);
         }
 
-        public void OnPlayerEnter()
+        public override void OnPlayerEnter(PlayerController player)
         {
+            base.OnPlayerEnter(player);
+
+            RotatateTo(Quaternion.LookRotation(player.transform.position - transform.position));
+
             if (_isQuestStarted) return;
 
             _messageView.text = "";
@@ -43,8 +50,10 @@ namespace Gameplay
             }
         }
 
-        public void OnPlayerExit()
+        public override void OnPlayerExit()
         {
+            base.OnPlayerExit();
+
             if (!_isQuestStarted || _isQuestFinished)
                 _messageView.gameObject.SetActive(false);
         }
@@ -94,20 +103,17 @@ namespace Gameplay
             PringMessage(message);
         }
 
+        private void RotatateTo(Quaternion rotation)
+        {
+            transform.DORotateQuaternion(rotation, 0.25f)
+                .SetEase(Ease.OutQuad);
+        }
+
         private void PringMessage(string message) => StartCoroutine(PringMessageRoutine(message));
         private IEnumerator PringMessageRoutine(string targetMessage)
         {
-            var currentMessage = _messageView.text;
-
-            while (currentMessage.Length > 0)
-            {
-                currentMessage = currentMessage[0..^1];
-                _messageView.text = currentMessage;
-
-                yield return new WaitForSeconds(0.001f);
-            }
-
-            currentMessage = "";
+            var currentMessage = "";
+            _messageView.text = currentMessage;
 
             for (int i = 0; i < targetMessage.Length; i++)
             {

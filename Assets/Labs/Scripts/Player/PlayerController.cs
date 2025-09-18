@@ -6,12 +6,12 @@ namespace Gameplay
     {
         [SerializeField] private float _movementSpeed;
         [SerializeField] private float _rotationSpeed;
+        [SerializeField] private float _interactionRange;
 
         [Space]
 
-        [SerializeField] private float _interactionRange;
+        [SerializeField] private CameraTracker _cameraTracker;
 
-        private Rigidbody _rigidbody;
         private ItemPickingUp _itemPickingUp;
         private Camera _camera;
 
@@ -19,7 +19,6 @@ namespace Gameplay
 
         private void Start()
         {
-            _rigidbody = GetComponent<Rigidbody>();
             _itemPickingUp = GetComponent<ItemPickingUp>();
             _camera = Camera.main;
         }
@@ -45,13 +44,19 @@ namespace Gameplay
         private void OnTriggerEnter(Collider other)
         {
             if (other.TryGetComponent<QuestNPC>(out var npc))
-                npc.OnPlayerEnter();
+            {
+                npc.OnPlayerEnter(this);
+                _cameraTracker.SetToNpcMode(npc);
+            }
         }
 
         private void OnTriggerExit(Collider other)
         {
             if (other.TryGetComponent<QuestNPC>(out var npc))
+            {
                 npc.OnPlayerExit();
+                _cameraTracker.SetDefaultMode();
+            }
         }
 
         private void Move(float deltaTime)
@@ -63,21 +68,8 @@ namespace Gameplay
             var velocity = direction * _movementSpeed;
             var rotation = Quaternion.LookRotation(direction);
 
-            _rigidbody.AddForce(velocity, ForceMode.Force);
+            transform.position += velocity * deltaTime;
             transform.rotation = Quaternion.Lerp(transform.rotation, rotation, _rotationSpeed * deltaTime);
-
-            LimitVelocity();
-        }
-
-        private void LimitVelocity()
-        {
-            var flatVelocity = new Vector3(_rigidbody.linearVelocity.x, 0f, _rigidbody.linearVelocity.z);
-
-            if (flatVelocity.magnitude > _movementSpeed)
-            {
-                var limitedVel = flatVelocity.normalized * _movementSpeed;
-                _rigidbody.linearVelocity = new Vector3(limitedVel.x, _rigidbody.linearVelocity.y, limitedVel.z);
-            }
         }
 
         private void PickUpItem()
