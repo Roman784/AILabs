@@ -13,6 +13,7 @@ namespace Gameplay
 
         public override void Enter()
         {
+            _npc.Animation.SetIdleAnimation();
             _timeToEnd = Time.time + Random.Range(0f, STOP_TIME_RANGE);
         }
 

@@ -987,7 +987,7 @@ GameObject:
   - component: {fileID: 665916143}
   - component: {fileID: 665916144}
   - component: {fileID: 665916142}
-  - component: {fileID: 665916140}
+  - component: {fileID: 665916145}
   - component: {fileID: 665916141}
   m_Layer: 0
   m_Name: Player
@@ -1012,22 +1012,6 @@ Transform:
   - {fileID: 1676173613}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &665916140
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 665916138}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0208bb9934c3f0e4185f4e1ef40b27c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _movementSpeed: 4
-  _rotationSpeed: 12
-  _interactionRange: 1.5
-  _cameraTracker: {fileID: 690763728}
 --- !u!114 &665916141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1112,6 +1096,23 @@ SphereCollider:
   serializedVersion: 3
   m_Radius: 1.5
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &665916145
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 665916138}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f96dae541ef75b74ea93bfb03168f5af, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.Player
+  _animator: {fileID: 1925293710}
+  _movementSpeed: 4
+  _rotationSpeed: 12
+  _interactionRange: 1.5
+  _cameraTracker: {fileID: 690763728}
 --- !u!1 &690763726
 GameObject:
   m_ObjectHideFlags: 0
@@ -1403,6 +1404,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9fe15e102425b0647aba6e30950b8139, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Utils.FaceToCamera
+--- !u!1 &1235831968 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: 56f16be7361eb9f4d828e21810a80f81,
+    type: 3}
+  m_PrefabInstance: {fileID: 1824593795}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1251543989
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1789,15 +1796,39 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -5017971254852617305, guid: b5a10c2841f7c1d41837a10d7428b027,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 35.288013
+      objectReference: {fileID: 0}
+    - target: {fileID: 445712794880070669, guid: b5a10c2841f7c1d41837a10d7428b027,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 3.9524717
+      objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: b5a10c2841f7c1d41837a10d7428b027,
         type: 3}
       propertyPath: m_Name
       value: character-male-d
       objectReference: {fileID: 0}
+    - target: {fileID: 1812433027226884373, guid: b5a10c2841f7c1d41837a10d7428b027,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 3.9524717
+      objectReference: {fileID: 0}
+    - target: {fileID: 8891244130364874969, guid: b5a10c2841f7c1d41837a10d7428b027,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: -35.288013
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: b5a10c2841f7c1d41837a10d7428b027,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1925293710}
   m_SourcePrefab: {fileID: 100100000, guid: b5a10c2841f7c1d41837a10d7428b027, type: 3}
 --- !u!4 &1490104372 stripped
 Transform:
@@ -2058,7 +2089,11 @@ PrefabInstance:
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
-    m_AddedComponents: []
+    m_AddedComponents:
+    - targetCorrespondingSourceObject: {fileID: 919132149155446097, guid: 56f16be7361eb9f4d828e21810a80f81,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1824593797}
   m_SourcePrefab: {fileID: 100100000, guid: 56f16be7361eb9f4d828e21810a80f81, type: 3}
 --- !u!4 &1824593796 stripped
 Transform:
@@ -2066,6 +2101,56 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1824593795}
   m_PrefabAsset: {fileID: 0}
+--- !u!95 &1824593797
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1235831968}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 742343c4aa4946e4bb69cca53debbd88, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
+--- !u!1 &1925293709 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 919132149155446097, guid: b5a10c2841f7c1d41837a10d7428b027,
+    type: 3}
+  m_PrefabInstance: {fileID: 1490104371}
+  m_PrefabAsset: {fileID: 0}
+--- !u!95 &1925293710
+Animator:
+  serializedVersion: 7
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1925293709}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 24e632d028b889443bcb201625966ad4, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_AnimatePhysics: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &2010770865
 GameObject:
   m_ObjectHideFlags: 0
@@ -2115,6 +2200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e877869d41b031446865b21ea266e654, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Gameplay.QuestNPC
+  _animator: {fileID: 1824593797}
   _requiredItems: 0100000002000000
   _messageView: {fileID: 1461473803}
   _welcomeMessage: "\u041F\u0440\u0438\u0432\u0435\u0442, \u043C\u043E\u043B\u043E\u0434\u043E\u0439
@@ -2166,7 +2252,7 @@ NavMeshAgent:
   m_AutoBraking: 1
   m_AutoRepath: 1
   m_Height: 0.75
-  m_BaseOffset: -0.1
+  m_BaseOffset: -0.05
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
 --- !u!1660057539 &9223372036854775807

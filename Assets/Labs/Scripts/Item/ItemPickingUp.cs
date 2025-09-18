@@ -15,7 +15,7 @@ namespace Gameplay
         {
             if (item == _currentItem) return false;
 
-            Drop(item.transform.position);
+            TryDrop(item.transform.position);
 
             item.transform.position = InHandsPosition;
             item.transform.SetParent(_inHandsPoint, true);
@@ -24,13 +24,15 @@ namespace Gameplay
             return true;
         }
 
-        public void Drop(Vector3 position)
+        public bool TryDrop(Vector3 position)
         {
-            if (_currentItem == null) return;
+            if (_currentItem == null) return false;
 
             _currentItem.transform.position = position;
             _currentItem.transform.SetParent(null, true);
             _currentItem = null;
+
+            return true;
         }
     }
 }

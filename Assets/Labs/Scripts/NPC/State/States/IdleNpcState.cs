@@ -8,6 +8,11 @@ namespace Gameplay
         {
         }
 
+        public override void Enter()
+        {
+            _npc.Animation.SetIdleAnimation();
+        }
+
         public override void Update()
         {
             if (!_npc.IsPlayerInRange)

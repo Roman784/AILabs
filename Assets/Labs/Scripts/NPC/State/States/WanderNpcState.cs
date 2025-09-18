@@ -14,6 +14,7 @@ namespace Gameplay
 
         public override void Enter()
         {
+            _npc.Animation.SetWalkAnimation();
             SetNewDestination();
         }
 

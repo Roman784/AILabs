@@ -33,7 +33,7 @@ namespace Gameplay
             _messageView.gameObject.SetActive(false);
         }
 
-        public override void OnPlayerEnter(PlayerController player)
+        public override void OnPlayerEnter(Player player)
         {
             base.OnPlayerEnter(player);
 
@@ -58,7 +58,7 @@ namespace Gameplay
                 _messageView.gameObject.SetActive(false);
         }
 
-        public void Interact(PlayerController player)
+        public void Interact(PlayerInteraction player)
         {
             if (!_isQuestStarted)
                 StartQuest();
@@ -80,7 +80,7 @@ namespace Gameplay
 
         public void GiveItem(Item item)
         {
-            if (!_isQuestStarted) return;
+            if (!_isQuestStarted || item == null) return;
 
             if (item.Type != CurrentQuestItemType)
             {
