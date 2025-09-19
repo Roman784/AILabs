@@ -1,0 +1,17 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db2cd50503f77ee4dba00abf8fe0b61a, type: 3}
+  m_Name: StickConfig
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.ItemConfig
+  Id: 0
+  Icon: {fileID: -1611902966, guid: c2d7718008c0d74419bec38ce3056209, type: 3}
+  Prefab: {fileID: 7667254965702191896, guid: 3b200cb3e283cde4bb84861fd31b6329, type: 3}

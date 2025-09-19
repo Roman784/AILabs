@@ -23,9 +23,6 @@ namespace Gameplay
 
             else if (_player.Input.IsPickUpItem())
                 _handler.SetPickUpItemState();
-
-            else if (_player.Input.IsDropItem())
-                _handler.SetDropState();
         }
     }
 }

@@ -14,7 +14,6 @@ namespace Gameplay
             _statesMap[typeof(IdlePlayerState)] = new IdlePlayerState(player, this);
             _statesMap[typeof(WalkPlayerState)] = new WalkPlayerState(player, this);
             _statesMap[typeof(PickUpItemPlayerState)] = new PickUpItemPlayerState(player, this);
-            _statesMap[typeof(DropItemPlayerState)] = new DropItemPlayerState(player, this);
             _statesMap[typeof(InteractWithNpcPlayerState)] = new InteractWithNpcPlayerState(player, this);
 
             // Initial state.
@@ -41,12 +40,6 @@ namespace Gameplay
         public void SetPickUpItemState()
         {
             var state = GetState<PickUpItemPlayerState>();
-            SetState(state);
-        }
-
-        public void SetDropState()
-        {
-            var state = GetState<DropItemPlayerState>();
             SetState(state);
         }
 

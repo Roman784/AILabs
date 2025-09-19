@@ -63,7 +63,7 @@ namespace Gameplay
             if (!_isQuestStarted)
                 StartQuest();
             else if (!_isQuestFinished)
-                GiveItem(player.HoldingItem);
+                GiveItem(player.ItemInHands);
         }
 
         private void StartQuest()
@@ -78,8 +78,9 @@ namespace Gameplay
             PringMessage(_farewellMessage);
         }
 
-        public void GiveItem(Item item)
+        public void GiveItem(ItemInHands itemInHands)
         {
+            var item = itemInHands.CurrentItem;
             if (!_isQuestStarted || item == null) return;
 
             if (item.Type != CurrentQuestItemType)
@@ -88,7 +89,7 @@ namespace Gameplay
                 return;
             }
 
-            Destroy(item.gameObject);
+            itemInHands.TryGiveItem();
             _currentRequiredItemIdx++;
 
             if (_currentRequiredItemIdx >= _requiredItems.Length)

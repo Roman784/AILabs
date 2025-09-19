@@ -1,18 +1,21 @@
+using UnityEditor.ShaderKeywordFilter;
 using UnityEngine;
 
 namespace Gameplay
 {
     public class PlayerInteraction
     {
-        private ItemPickingUp _itemPickingUp;
+        private ItemInHands _itemInHands;
+        private Inventory _inventory;
         private Transform _transform;
         private float _interactionRange;
 
-        public Item HoldingItem => _itemPickingUp.CurrentItem;
+        public ItemInHands ItemInHands => _itemInHands;
 
-        public PlayerInteraction(ItemPickingUp itemPickingUp, Transform transform, float interactionRange)
+        public PlayerInteraction(ItemInHands itemInHands, Inventory inventory, Transform transform, float interactionRange)
         {
-            _itemPickingUp = itemPickingUp;
+            _itemInHands = itemInHands;
+            _inventory = inventory;
             _transform = transform;
             _interactionRange = interactionRange;
         }
@@ -23,19 +26,24 @@ namespace Gameplay
             Collider[] colliders = Physics.OverlapSphere(_transform.position, _interactionRange, itemLayer);
             foreach (var collider in colliders)
             {
-                if (collider.TryGetComponent<Item>(out var item))
+                if (collider.TryGetComponent<Item>(out var item) && item != _itemInHands.CurrentItem)
                 {
-                    if (_itemPickingUp.TryPickUp(item))
+                    if (_inventory.TryAddItem(item.Config))
+                    {
+                        Object.Destroy(item.gameObject);
                         return true;
+                    }
                 }
             }
             return false;
         }
 
-        public bool TryDropItem()
+        public bool TryCreateItem(ItemConfig config)
         {
             var droppedItemPosition = _transform.position + _transform.forward * 0.5f;
-            return _itemPickingUp.TryDrop(droppedItemPosition);
+            var item = Object.Instantiate(config.Prefab);
+            item.transform.position = droppedItemPosition;
+            return true;
         }
 
         public bool TryInteractWithNpc()

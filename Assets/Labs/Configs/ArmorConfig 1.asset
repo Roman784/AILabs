@@ -1,0 +1,18 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 710039dd66585344592859787e82fe98, type: 3}
+  m_Name: ArmorConfig 1
+  m_EditorClassIdentifier: Assembly-CSharp::Gameplay.ArmorItemConfig
+  Id: 4
+  Icon: {fileID: 535444135, guid: c2d7718008c0d74419bec38ce3056209, type: 3}
+  Prefab: {fileID: 4919548830557562148, guid: 4fe618e0f43dee34799b00a3921a08b1, type: 3}
+  Armor: 10
