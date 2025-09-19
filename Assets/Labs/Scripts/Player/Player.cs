@@ -49,7 +49,7 @@ namespace Gameplay
 
             _inventory.OnDropItemSignal.AddListener((config) =>
             {
-                if (config.Id == itemInHands.CurrentItem.Config.Id)
+                if (itemInHands.CurrentItem != null && config.Id == itemInHands.CurrentItem.Config.Id)
                     itemInHands.TryRemoveItem();
                 if (_interaction.TryCreateItem(config))
                     _animation.SetPickUpItemAnimation();
