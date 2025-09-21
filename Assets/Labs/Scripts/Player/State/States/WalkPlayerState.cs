@@ -16,7 +16,7 @@ namespace Gameplay
         public override void Update()
         {
             if (_player.Input.IsMovementActive())
-                _player.Movement.Move();
+                _player.Movement.Move(_player.Input);
 
             else
                 _handler.SetIdleState();

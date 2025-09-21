@@ -16,6 +16,7 @@ namespace Gameplay
         [Space]
 
         [SerializeField] private CameraTracker _cameraTracker;
+        [SerializeField] private Joystick _joystick;
 
         private PlayerStateHandler _stateHandler;
         private PlayerMovement _movement;
@@ -35,7 +36,7 @@ namespace Gameplay
             var navMeshAgent = GetComponent<NavMeshAgent>();
             _input = new KeyboardPlayerInput();
 
-            _movement = new PlayerMovement(_input, navMeshAgent, transform);
+            _movement = new PlayerMovement(navMeshAgent, transform);
             _interaction = new PlayerInteraction(itemInHands, _inventory, transform, _interactionRange);
             _animation = new PlayerAnimation(_animator);
 
@@ -80,6 +81,20 @@ namespace Gameplay
                 else
                     _stats.SetArmor(0);
             });
+        }
+
+        public void ChangeInput()
+        {
+            if (_input is JoystickPlayerInput)
+            {
+                _input = new KeyboardPlayerInput();
+                _joystick.Hide();
+            }
+            else
+            {
+                _input = new JoystickPlayerInput(_joystick);
+                _joystick.Show();
+            }
         }
 
         private void Update()

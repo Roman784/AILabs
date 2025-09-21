@@ -5,21 +5,19 @@ namespace Gameplay
 {
     public class PlayerMovement
     {
-        private PlayerInput _input;
         private NavMeshAgent _navMeshAgent;
         private Transform _transform;
 
-        public PlayerMovement(PlayerInput input, NavMeshAgent navMeshAgent, Transform transform)
+        public PlayerMovement(NavMeshAgent navMeshAgent, Transform transform)
         {
-            _input = input;
             _navMeshAgent = navMeshAgent;
             _transform = transform;
         }
 
-        public void Move()
+        public void Move(PlayerInput input)
         {
-            var input = _input.GetMovementInput();
-            var direction = new Vector3(input.x, 0f, input.y);
+            var movementInput = input.GetMovementInput();
+            var direction = new Vector3(movementInput.x, 0f, movementInput.y);
             var position = _transform.position + direction;
 
             _navMeshAgent.isStopped = false;
