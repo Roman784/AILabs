@@ -4,8 +4,6 @@ namespace Gameplay
 {
     public class WanderNpcState : NpcState
     {
-        private const float FIELD_RANGE = 4f;
-
         private Vector3 _currentDestination;
 
         public WanderNpcState(NPC npc, NpcStateHandler stateHandler) : base(npc, stateHandler)
@@ -33,10 +31,7 @@ namespace Gameplay
 
         private void SetNewDestination()
         {
-            _currentDestination = new Vector3(
-                Random.Range(-FIELD_RANGE, FIELD_RANGE), 
-                0f, 
-                Random.Range(-FIELD_RANGE, FIELD_RANGE));
+            _currentDestination = Random.insideUnitSphere * _npc.WanderRange + _npc.WanderCenterPosition;
             _npc.Movement.MoveTo(_currentDestination);
         }
     }

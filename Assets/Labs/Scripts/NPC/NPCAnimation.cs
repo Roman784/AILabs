@@ -9,7 +9,8 @@ namespace Gameplay
         {
             None,
             Idle,
-            Walk
+            Walk,
+            Attack
         }
 
         private Animator _animator;
@@ -17,7 +18,8 @@ namespace Gameplay
         private Dictionary<AnimationState, string> _statesMap = new()
         {
             { AnimationState.Idle, "Idle" },
-            { AnimationState.Walk, "Walk" }
+            { AnimationState.Walk, "Walk" },
+            { AnimationState.Attack, "Attack" },
         };
 
         public NPCAnimation(Animator animator)
@@ -33,6 +35,11 @@ namespace Gameplay
         public void SetWalkAnimation()
         {
             SetState(AnimationState.Walk);
+        }
+
+        public void SetAttackAnimation()
+        {
+            SetState(AnimationState.Attack);
         }
 
         private void SetState(AnimationState state)

@@ -5,8 +5,8 @@ namespace Gameplay
 {
     public class NpcStateHandler
     {
-        private Dictionary<Type, NpcState> _statesMap;
-        private NpcState _currentState;
+        protected Dictionary<Type, NpcState> _statesMap;
+        protected NpcState _currentState;
 
         public NpcStateHandler(NPC npc)
         {
@@ -42,7 +42,7 @@ namespace Gameplay
             SetState(state);
         }
 
-        public void SetState(NpcState behavior)
+        protected void SetState(NpcState behavior)
         {
             _currentState?.Exit();
 
@@ -50,7 +50,7 @@ namespace Gameplay
             _currentState.Enter();
         }
 
-        private NpcState GetState<T>() where T : NpcState
+        protected NpcState GetState<T>() where T : NpcState
         {
             return _statesMap[typeof(T)];
         }

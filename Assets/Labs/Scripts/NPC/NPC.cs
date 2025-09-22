@@ -5,6 +5,11 @@ namespace Gameplay
 {
     public class NPC : MonoBehaviour
     {
+        [SerializeField] private Transform _wanderCenterPoint;
+        [SerializeField] private float _wanderRange;
+
+        [Space]
+
         [SerializeField] private Animator _animator;
 
         private NpcStateHandler _stateHandler;
@@ -15,8 +20,10 @@ namespace Gameplay
         public NPCMovement Movement => _movement;
         public NPCAnimation Animation => _animation;
         public bool IsPlayerInRange => _isPlayerInRange;
+        public Vector3 WanderCenterPosition => _wanderCenterPoint.position;
+        public float WanderRange => _wanderRange;
 
-        private void Awake()
+        protected void Awake()
         {
             _movement = new NPCMovement(GetComponent<NavMeshAgent>());
             _animation = new NPCAnimation(_animator);
@@ -33,9 +40,15 @@ namespace Gameplay
             _isPlayerInRange = false;
         }
 
-        private void Update()
+        protected void Update()
         {
             _stateHandler.Update();
+        }
+
+        private void OnDrawGizmos()
+        {
+            Gizmos.color = Color.yellow;
+            Gizmos.DrawWireSphere(WanderCenterPosition, WanderRange);
         }
     }
 }
