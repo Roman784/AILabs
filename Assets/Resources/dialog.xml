@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<dialog id="forest_man">
+
+  <node id="0" nextNode="1">
+    <text>Доброе утро, молодой человек ;)</text>
+  </node>
+  
+  <node id="1">
+    <text>Куда ты собираешься идти, тут повсюду деревья?</text>
+    <responses>
+      <response text="Не твоё дело." nextNode="2" />
+      <response text="Просто гуляю." nextNode="3" />
+      <response text="У тебя красивые глаза ;)" nextNode="4" />
+    </responses>
+  </node>
+
+  <node id="2">
+    <text>Понял(</text>
+    <responses>
+      <response text="(Пойти дальше)" nextNode="end" />
+      <response text="(Извиниться)" nextNode="6" />
+    </responses>
+  </node>
+
+  <node id="3">
+    <text>Хорошо, удачи не заблудиться.</text>
+    <responses>
+      <response text="Спасибо, буду осторожен." nextNode="5" />
+    </responses>
+  </node>
+
+  <node id="4">
+    <text>Как ты их видишь, я же в очках?</text>
+    <responses>
+      <response text="Я это чувствую :3" nextNode="7" />
+    </responses>
+  </node>
+
+  <node id="5" nextNode="end">
+    <text>До скорой встречи.</text>
+  </node>
+
+  <node id="6" nextNode="1">
+    <text>Всё в порядке, лучше ответь.</text>
+  </node>
+
+  <node id="7" nextNode="5">
+    <text>Тебе лучше забыть меня и продолжить путь.</text>
+  </node>
+
+</dialog>
