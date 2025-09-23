@@ -9,6 +9,7 @@ namespace Gameplay
         [SerializeField] private float _trackSpeed;
         [SerializeField] private Vector3 _defaultDirection;
         [SerializeField] private float _defaultDistance;
+        [SerializeField] private bool _fixedUpdate;
 
         private Transform _target;
         private Quaternion _rotation;
@@ -43,7 +44,14 @@ namespace Gameplay
 
         private void Update()
         {
-            Track(Time.deltaTime);
+            if (!_fixedUpdate)
+                Track(Time.deltaTime);
+        }
+
+        private void FixedUpdate()
+        {
+            if (_fixedUpdate)
+                Track(Time.fixedDeltaTime);
         }
 
         private void Track(float deltaTime)
